@@ -1,0 +1,51 @@
+{
+  "name": "@konami-lit/controller",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reactive controller for detecting Konami code and custom input sequences",
+  "type": "module",
+  "author": "David Robinson",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "konami",
+    "konami-code",
+    "easter-egg",
+    "web-components",
+    "lit",
+    "reactive-controller",
+    "input-detection"
+  ],
+  "peerDependencies": {
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
+    "happy-dom": "^20.0.10",
+    "lit": "^3.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^4.0.8"
+  }
+}

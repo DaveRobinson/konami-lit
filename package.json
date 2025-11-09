@@ -1,0 +1,24 @@
+{
+  "name": "konami-lit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reactive controller for detecting Konami code and custom input sequences",
+  "author": "David Robinson",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -ws",
+    "build:watch": "npm run build:watch -ws",
+    "clean": "npm run clean -ws --if-present",
+    "test": "npm run test -ws --if-present",
+    "test:watch": "npm run test:watch -w @konami-lit/controller",
+    "test:ui": "npm run test:ui -w @konami-lit/controller",
+    "test:coverage": "npm run test:coverage -w @konami-lit/controller",
+    "dev": "npm run dev -w @konami-lit/demo"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
