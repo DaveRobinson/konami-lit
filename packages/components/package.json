@@ -1,0 +1,66 @@
+{
+  "name": "@konami-lit/components",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reusable Lit components using the Konami controller",
+  "type": "module",
+  "author": "David Robinson",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./konami-reveal": {
+      "types": "./dist/konami-reveal.d.ts",
+      "default": "./dist/konami-reveal.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bundles",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && npm run bundle",
+    "build:watch": "tsc --watch",
+    "bundle": "npm run bundle:esm && npm run bundle:iife",
+    "bundle:esm": "vite build",
+    "bundle:iife": "BUILD_IIFE=true ENTRY_FILE=src/konami-reveal.ts OUTPUT_NAME=konami-reveal vite build && BUILD_IIFE=true ENTRY_FILE=src/bundles/konami-reveal-light.ts OUTPUT_NAME=konami-reveal.light vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "clean": "rm -rf dist bundles"
+  },
+  "keywords": [
+    "konami",
+    "konami-code",
+    "web-components",
+    "lit",
+    "reveal",
+    "easter-egg"
+  ],
+  "peerDependencies": {
+    "lit": "^3.3.0"
+  },
+  "dependencies": {
+    "@konami-lit/controller": "*"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
+    "happy-dom": "^20.0.10",
+    "lit": "^3.3.1",
+    "terser": "^5.36.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.8"
+  }
+}

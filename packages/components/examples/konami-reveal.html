@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>konami-reveal Examples</title>
+  <script type="module" src="../src/konami-reveal.ts"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    h1 {
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    .example {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #0066cc;
+    }
+    .code-block {
+      background: #282c34;
+      color: #abb2bf;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .code-block code {
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.9em;
+    }
+    .demo-area {
+      margin: 1rem 0;
+      padding: 1.5rem;
+      background: white;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+    }
+    .content-box {
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .initial-content {
+      background: #e3f2fd;
+      border: 2px solid #2196f3;
+    }
+    .revealed-content {
+      background: #c8e6c9;
+      border: 2px solid #4caf50;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .info-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    kbd {
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+      display: inline-block;
+      padding: 0.2em 0.4em;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <a href="../" class="back-link">← Back to Components</a>
+
+  <h1>&lt;konami-reveal&gt; Examples</h1>
+  <p>Interactive examples showing different configurations of the konami-reveal component.</p>
+
+  <div class="info-box">
+    <strong>Classic Konami Code:</strong>
+    <kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd>
+    <kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd>
+    <kbd>B</kbd> <kbd>A</kbd>
+  </div>
+
+  <!-- Example 1: Basic Shadow DOM -->
+  <div class="example">
+    <h3>Example 1: Basic (Shadow DOM)</h3>
+    <p>Default behavior with shadow DOM encapsulation.</p>
+
+    <div class="code-block"><code>&lt;konami-reveal&gt;
+  &lt;div slot="initial"&gt;...&lt;/div&gt;
+  &lt;div slot="revealed"&gt;...&lt;/div&gt;
+&lt;/konami-reveal&gt;</code></div>
+
+    <div class="demo-area">
+      <konami-reveal>
+        <div slot="initial" class="content-box initial-content">
+          <p>🎮 Press the Konami code to reveal the secret!</p>
+          <p><small>(Use arrow keys, then B and A)</small></p>
+        </div>
+        <div slot="revealed" class="content-box revealed-content">
+          🎉 Secret Unlocked! 🎉
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <!-- Example 2: Light DOM -->
+  <div class="example">
+    <h3>Example 2: Light DOM (CMS Compatible)</h3>
+    <p>Using <code>light-dom</code> attribute for CMS integration (Drupal SDC, WordPress, etc.)</p>
+
+    <div class="code-block"><code>&lt;konami-reveal light-dom&gt;
+  &lt;div slot="initial"&gt;...&lt;/div&gt;
+  &lt;div slot="revealed"&gt;...&lt;/div&gt;
+&lt;/konami-reveal&gt;</code></div>
+
+    <div class="demo-area">
+      <konami-reveal light-dom>
+        <div slot="initial" class="content-box initial-content">
+          <p>🌐 Light DOM Version</p>
+          <p><small>Try the Konami code here too!</small></p>
+        </div>
+        <div slot="revealed" class="content-box revealed-content">
+          ✨ Light DOM Secret! ✨
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <!-- Example 3: Custom Sequence -->
+  <div class="example">
+    <h3>Example 3: Custom Key Sequence</h3>
+    <p>Using a custom key sequence: <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd></p>
+
+    <div class="code-block"><code>&lt;konami-reveal code='["a","b","c"]'&gt;
+  &lt;div slot="revealed"&gt;...&lt;/div&gt;
+&lt;/konami-reveal&gt;</code></div>
+
+    <div class="demo-area">
+      <konami-reveal code='["a","b","c"]'>
+        <div slot="initial" class="content-box initial-content">
+          <p>🔤 Custom Sequence!</p>
+          <p>Press: <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd></p>
+        </div>
+        <div slot="revealed" class="content-box revealed-content">
+          🎯 ABC Unlocked! 🎯
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <!-- Example 4: No Initial Content -->
+  <div class="example">
+    <h3>Example 4: No Initial Content</h3>
+    <p>Only showing revealed content (no initial slot).</p>
+
+    <div class="code-block"><code>&lt;konami-reveal&gt;
+  &lt;div slot="revealed"&gt;...&lt;/div&gt;
+&lt;/konami-reveal&gt;</code></div>
+
+    <div class="demo-area">
+      <p>Nothing visible until you enter the code...</p>
+      <konami-reveal>
+        <div slot="revealed" class="content-box revealed-content">
+          👻 Surprise! You found the hidden content!
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <!-- Example 5: Event Listener -->
+  <div class="example">
+    <h3>Example 5: Event Listeners</h3>
+    <p>Listening to progress and activation events.</p>
+
+    <div class="code-block"><code>&lt;konami-reveal id="event-demo"&gt;...&lt;/konami-reveal&gt;
+
+&lt;script&gt;
+  const el = document.getElementById('event-demo');
+  el.addEventListener('konami-progress', (e) => {
+    console.log('Progress:', e.detail);
+  });
+  el.addEventListener('konami-activated', () => {
+    console.log('Activated!');
+  });
+&lt;/script&gt;</code></div>
+
+    <div class="demo-area">
+      <konami-reveal id="event-demo">
+        <div slot="initial" class="content-box initial-content">
+          <p>📊 Event Demo</p>
+          <p><small>Open console to see events</small></p>
+          <p id="progress-display">Progress: 0/10</p>
+        </div>
+        <div slot="revealed" class="content-box revealed-content">
+          ✅ Check the console logs!
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <!-- Example 6: Longer Timeout -->
+  <div class="example">
+    <h3>Example 6: Custom Timeout</h3>
+    <p>Extended timeout of 5 seconds between keypresses.</p>
+
+    <div class="code-block"><code>&lt;konami-reveal timeout="5000"&gt;
+  &lt;div slot="revealed"&gt;...&lt;/div&gt;
+&lt;/konami-reveal&gt;</code></div>
+
+    <div class="demo-area">
+      <konami-reveal timeout="5000">
+        <div slot="initial" class="content-box initial-content">
+          <p>⏱️ Relaxed Timing</p>
+          <p><small>You have 5 seconds between each key</small></p>
+        </div>
+        <div slot="revealed" class="content-box revealed-content">
+          🐢 Slow and steady wins!
+        </div>
+      </konami-reveal>
+    </div>
+  </div>
+
+  <script>
+    // Event listener demo
+    const eventDemo = document.getElementById('event-demo');
+    const progressDisplay = document.getElementById('progress-display');
+
+    eventDemo.addEventListener('konami-progress', (e) => {
+      console.log('Progress:', e.detail);
+      progressDisplay.textContent = `Progress: ${e.detail.position}/${e.detail.total}`;
+    });
+
+    eventDemo.addEventListener('konami-activated', () => {
+      console.log('🎉 Activated!');
+    });
+
+    eventDemo.addEventListener('konami-reset', () => {
+      console.log('🔄 Reset');
+      progressDisplay.textContent = 'Progress: 0/10';
+    });
+  </script>
+</body>
+</html>

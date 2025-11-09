@@ -11,14 +11,26 @@
   "scripts": {
     "build": "npm run build -ws",
     "build:watch": "npm run build:watch -ws",
+    "bundle": "npm run bundle -w @konami-lit/components --if-present",
     "clean": "npm run clean -ws --if-present",
-    "test": "npm run test -ws --if-present",
-    "test:watch": "npm run test:watch -w @konami-lit/controller",
-    "test:ui": "npm run test:ui -w @konami-lit/controller",
-    "test:coverage": "npm run test:coverage -w @konami-lit/controller",
-    "dev": "npm run dev -w @konami-lit/demo"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "test:controller": "npm run test -w @konami-lit/controller",
+    "test:controller:watch": "npm run test:watch -w @konami-lit/controller",
+    "test:controller:ui": "npm run test:ui -w @konami-lit/controller",
+    "test:controller:coverage": "npm run test:coverage -w @konami-lit/controller",
+    "test:components": "npm run test -w @konami-lit/components",
+    "test:components:watch": "npm run test:watch -w @konami-lit/components",
+    "test:components:ui": "npm run test:ui -w @konami-lit/components",
+    "test:components:coverage": "npm run test:coverage -w @konami-lit/components",
+    "dev": "npm run dev -w @konami-lit/demo",
+    "dev:demo": "npm run dev -w @konami-lit/demo",
+    "dev:components": "npm run dev -w @konami-lit/components"
   },
   "devDependencies": {
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "vitest": "^4.0.8"
   }
 }
