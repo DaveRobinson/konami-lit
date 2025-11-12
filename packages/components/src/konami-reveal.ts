@@ -103,6 +103,9 @@ export class KonamiReveal extends LitElement {
 
   private konami!: KonamiController;
 
+  // Track if we've injected light DOM styles globally
+  private static lightDomStylesInjected = false;
+
   /**
    * Override createRenderRoot to support light DOM rendering
    */
@@ -112,6 +115,12 @@ export class KonamiReveal extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+    // Inject light DOM styles if needed (only once globally)
+    if (this.lightDom && !KonamiReveal.lightDomStylesInjected) {
+      this.injectLightDomStyles();
+      KonamiReveal.lightDomStylesInjected = true;
+    }
 
     // Initialize controller here after properties are set
     this.konami = new KonamiController(this, {
@@ -157,6 +166,37 @@ export class KonamiReveal extends LitElement {
       }));
     }
   };
+
+  /**
+   * Inject global styles for light DOM mode
+   * Only called once per page load
+   */
+  private injectLightDomStyles() {
+    const styleId = 'konami-reveal-light-dom-styles';
+
+    // Check if styles are already injected
+    if (document.getElementById(styleId)) {
+      return;
+    }
+
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      konami-reveal:not([activated]) [slot="initial"] {
+        display: block;
+      }
+      konami-reveal:not([activated]) [slot="revealed"] {
+        display: none;
+      }
+      konami-reveal[activated] [slot="initial"] {
+        display: none;
+      }
+      konami-reveal[activated] [slot="revealed"] {
+        display: block;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
   /**
    * Manually reset the activated state
